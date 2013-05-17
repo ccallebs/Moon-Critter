@@ -4,13 +4,14 @@ require './lib/game_window'
 class Player
   attr_accessor :window, :image, :movement_counter
 
-  attr_accessor :x, :y
+  attr_accessor :x, :y, :angle
 
   def initialize(window)
     self.window = window
     @image = Gosu::Image.new(@window, 'assets/player.png', false)
     @x = 25
     @y = 25
+    @angle = 0.0
     @movement_counter = 0
   end
 
@@ -19,21 +20,42 @@ class Player
     return unless @movement_counter % 10 == 0
 
     if @window.button_down? Gosu::KbRight
+      turn_right
       move_right
     elsif @window.button_down? Gosu::KbLeft
+      turn_left
       move_left
     elsif @window.button_down? Gosu::KbDown
+      turn_down
       move_down
     elsif @window.button_down? Gosu::KbUp
+      turn_up
       move_up
     end
   end
 
   def draw
-    @image.draw_rot(@x, @y, 2, 0.0)
+    @image.draw_rot(@x, @y, 2, @angle)
   end
 
 private
+
+  # Turn Methods
+  def turn_right
+    @angle = 90.0
+  end
+
+  def turn_left
+    @angle = 270.0
+  end
+
+  def turn_up
+    @angle = 0.0
+  end
+
+  def turn_down
+    @angle = 180.0
+  end
 
   # Movement Methods
 
