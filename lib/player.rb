@@ -1,4 +1,5 @@
 require 'gosu'
+require './lib/game_window'
 
 class Player
   attr_accessor :window, :image, :movement_counter
@@ -37,27 +38,35 @@ private
   # Movement Methods
 
   def move_right
-    @x += 50
-    puts "moving right."
+    new_x = @x + 50 
+    unless new_x == GameWindow::WIDTH + 25
+      @x = new_x
+      puts "moving right."
+    end
   end
 
   def move_left
-    @x -= 50
-    puts "moving left."
+    new_x = @x - 50
+    unless new_x == -25
+      @x = new_x
+      puts "moving left."
+    end
   end
 
   def move_up
-    @y -= 50
-    puts "moving up."
+    new_y = @y - 50
+    unless new_y == -25
+      @y = new_y
+      puts "moving up."
+    end
   end
 
   def move_down
-    @y += 50
-    puts "moving down."
-  end
-
-  def angle_up
-    @angle += 0.1
+    new_y = @y + 50
+    unless new_y == GameWindow::HEIGHT + 25
+      @y += 50
+      puts "moving down."
+    end
   end
 
 end
