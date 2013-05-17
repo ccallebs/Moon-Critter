@@ -6,6 +6,11 @@ class Map
 
   def initialize(window)
     @window = window
+    @tiles = []
+
+    populate_tiles
+
+    puts @tiles
   end
 
   def draw
@@ -21,15 +26,33 @@ class Map
 
 private 
 
-  def get_color(x, y)
-    if x % 3 == 1 || x % 3 == 2
-      if y % 3 == 1
-        :green
-      else
-        :brown
+  def populate_tiles
+    text = File.open("./assets/small_farm.dat").read
+
+    line_counter = 0
+    char_counter = 0
+    
+    text.each_line do |line|
+      @tiles.push []
+
+      line.each_char do |char|
+        @tiles[line_counter].push char
       end
-    else
+
+      line_counter += 1
+    end
+  end
+
+  def get_color(x, y)
+    tile = @tiles[x][y]
+
+    case tile
+    when 'G'
+      :green
+    when 'W'
       :blue
+    when 'D'
+      :brown
     end
   end
 end

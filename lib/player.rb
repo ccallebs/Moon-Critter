@@ -8,7 +8,7 @@ class Player
 
   def initialize(window)
     self.window = window
-    @image = Gosu::Image.new(@window, 'media/player.png', false)
+    @image = Gosu::Image.new(@window, 'assets/player.png', false)
     @x = 25
     @y = 25
     @movement_counter = 0
