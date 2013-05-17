@@ -24,11 +24,13 @@ private
   def hex_color
     case @color
     when :green
-      Gosu::Color::GREEN
+      Gosu::Color.argb(255, 0, 102, 0)
     when :brown
-      Gosu::Color::YELLOW
+      Gosu::Color.argb(255, 102, 51, 0)
     when :blue
-      Gosu::Color::BLUE
+      Gosu::Color.argb(255, 102, 178, 255)
+    when :dark_green
+      Gosu::Color.argb(255, 0, 204, 0)
     end
   end
 end

@@ -9,8 +9,6 @@ class Map
     @tiles = []
 
     populate_tiles
-
-    puts @tiles
   end
 
   def draw
@@ -53,6 +51,8 @@ private
       :blue
     when 'D'
       :brown
+    when 'T'
+      :dark_green
     end
   end
 end
