@@ -3,11 +3,11 @@ require 'gosu'
 class MapTile
   HEIGHT = 50
   WIDTH = 50
-  attr_accessor :window, :color, :x, :y
+  attr_accessor :window, :type, :x, :y
 
-  def initialize(window, color, x = 0, y = 0)
+  def initialize(window, raw_type, x = 0, y = 0)
     @window = window  
-    @color = color
+    @type = get_type(raw_type)
     @x = x
     @y = y
   end
@@ -21,15 +21,28 @@ class MapTile
 
 private
 
+  def get_type(raw_type)
+    case raw_type
+    when 'G'
+      :grass
+    when 'W'
+      :water
+    when 'D'
+      :dirt
+    when 'T'
+      :tree
+    end
+  end
+
   def hex_color
-    case @color
-    when :green
+    case @type
+    when :grass
       Gosu::Color.argb(255, 0, 102, 0)
-    when :brown
+    when :dirt
       Gosu::Color.argb(255, 102, 51, 0)
-    when :blue
+    when :water
       Gosu::Color.argb(255, 102, 178, 255)
-    when :dark_green
+    when :tree
       Gosu::Color.argb(255, 0, 204, 0)
     end
   end

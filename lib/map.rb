@@ -6,7 +6,7 @@ class Map
 
   def initialize(window)
     @window = window
-    @tiles = []
+    @char_map = []
 
     populate_tiles
   end
@@ -17,7 +17,7 @@ class Map
 
     horizontal_tiles.times do |x|
       vertical_tiles.times do |y|
-        MapTile.new(@window, get_color(x, y), x * 50, y * 50).draw
+        MapTile.new(@window, @char_map[x][y], x * 50, y * 50).draw
       end
     end
   end
@@ -31,28 +31,14 @@ private
     char_counter = 0
     
     text.each_line do |line|
-      @tiles.push []
+      @char_map.push []
 
       line.each_char do |char|
-        @tiles[line_counter].push char
+        @char_map[line_counter].push char
       end
 
       line_counter += 1
     end
   end
 
-  def get_color(x, y)
-    tile = @tiles[x][y]
-
-    case tile
-    when 'G'
-      :green
-    when 'W'
-      :blue
-    when 'D'
-      :brown
-    when 'T'
-      :dark_green
-    end
-  end
 end
