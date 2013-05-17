@@ -17,7 +17,7 @@ class Player
 
   def update
     @movement_counter += 1
-    return unless @movement_counter % 10 == 0
+    return unless @movement_counter % 5 == 0
 
     if @window.button_down? Gosu::KbRight
       turn_right

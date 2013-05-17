@@ -8,15 +8,20 @@ class MapTile
   def initialize(window, raw_type, x = 0, y = 0)
     @window = window  
     @type = get_type(raw_type)
+    @image = Gosu::Image.new(@window, image_path, false) if @type == :dirt
     @x = x
     @y = y
   end
 
   def draw
-    @window.draw_quad(@x, @y, hex_color,
-                      @x + WIDTH, @y, hex_color,
-                      @x, @y + HEIGHT, hex_color,
-                      @x + WIDTH, @y + HEIGHT, hex_color, 1)
+    if @type == :dirt
+      @image.draw_rot(@x + 25, @y + 25, 1, 0.0)
+    else
+      @window.draw_quad(@x, @y, hex_color,
+                        @x + WIDTH, @y, hex_color,
+                        @x, @y + HEIGHT, hex_color,
+                        @x + WIDTH, @y + HEIGHT, hex_color, 1)
+    end
   end
 
 private
@@ -31,6 +36,13 @@ private
       :dirt
     when 'T'
       :tree
+    end
+  end
+
+  def image_path
+    case @type
+    when :dirt
+      'assets/dirt.png'
     end
   end
 
