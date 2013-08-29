@@ -18,15 +18,10 @@ class Player
     @movement_counter += 1
     return unless @movement_counter % 5 == 0
 
-    if @window.button_down? Gosu::KbRight
-      @position.button_right
-    elsif @window.button_down? Gosu::KbLeft
-      @position.button_left
-    elsif @window.button_down? Gosu::KbDown
-      @position.button_down
-    elsif @window.button_down? Gosu::KbUp
-      @position.button_up
-    end
+    @position.button_right if @window.button_down? Gosu::KbRight  
+    @position.button_left if @window.button_down? Gosu::KbLeft
+    @position.button_down if @window.button_down? Gosu::KbDown
+    @position.button_up if @window.button_down? Gosu::KbUp
   end
 
   def draw
