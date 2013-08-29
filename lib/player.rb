@@ -5,8 +5,6 @@ require './lib/player_position'
 class Player
   attr_accessor :window, :image, :movement_counter
 
-  attr_accessor :x, :y, :angle
-
   def initialize(window)
     self.window = window
     @image = Gosu::Image.new(@window, 'assets/player.png', false)
