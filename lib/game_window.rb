@@ -12,14 +12,14 @@ class GameWindow < Gosu::Window
   def initialize
     super(HEIGHT, WIDTH, false)
     self.caption = CAPTION
-    @player = Player.new(self)
     @map = Map.new(self)
+    @player = Player.new(self, @map)
   end
 
   def update
     @player.update
   end
-  
+
   def draw
     @player.draw
     @map.draw

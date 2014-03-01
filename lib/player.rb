@@ -5,10 +5,11 @@ require './lib/player_position'
 class Player
   attr_accessor :window, :image, :movement_counter
 
-  def initialize(window)
+  def initialize(window, map)
     self.window = window
     @image = Gosu::Image.new(@window, 'assets/player.png', false)
     @position = PlayerPosition.new(x: 25, y: 25, angle: 0.0)
+    @map = map
     @movement_counter = 0
   end
 
@@ -16,7 +17,7 @@ class Player
     @movement_counter += 1
     return unless @movement_counter % 5 == 0
 
-    @position.button_right if @window.button_down? Gosu::KbRight  
+    @position.button_right if @window.button_down? Gosu::KbRight
     @position.button_left if @window.button_down? Gosu::KbLeft
     @position.button_down if @window.button_down? Gosu::KbDown
     @position.button_up if @window.button_down? Gosu::KbUp
