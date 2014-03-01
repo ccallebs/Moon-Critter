@@ -24,4 +24,9 @@ class MapTile
                         @x + WIDTH, @y + HEIGHT, @type.hex_color, 1)
     end
   end
+
+  def can_interact?
+    return false if @type == :water
+    return true
+  end
 end

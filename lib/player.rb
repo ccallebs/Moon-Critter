@@ -8,8 +8,7 @@ class Player
   def initialize(window, map)
     self.window = window
     @image = Gosu::Image.new(@window, 'assets/player.png', false)
-    @position = PlayerPosition.new(x: 25, y: 25, angle: 0.0)
-    @map = map
+    @position = PlayerPosition.new(x: 25, y: 25, angle: 0.0, map: map)
     @movement_counter = 0
   end
 

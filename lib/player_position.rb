@@ -8,13 +8,14 @@ class PlayerPosition
     @x = options[:x]
     @y = options[:y]
     @angle = options[:angle]
+    @map = options[:map]
   end
 
   # Defining button_right, button_left, button_up, button_down
   [:right, :left, :up, :down].each do |direction|
-    define_method("button_#{direction}") do 
+    define_method("button_#{direction}") do
       send("turn_#{direction}")
-      send("move_#{direction}")
+      send("move_#{direction}") if can_interact?
     end
   end
 
@@ -39,7 +40,7 @@ private
 
   # Movement Methods
   def move_right
-    new_x = @x + 50 
+    new_x = @x + 50
     unless new_x == GameWindow::WIDTH + 25
       @x = new_x
     end

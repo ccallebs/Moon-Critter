@@ -27,6 +27,10 @@ class Map
     end
   end
 
+  def fetch_tile(x, y)
+    @tiles[x / 50][y / 50]
+  end
+
 private
 
   def populate_world_map
