@@ -8,7 +8,7 @@ class Map
     @window = window
     @char_map = []
 
-    populate_char_map
+    populate_world_map
     build_tiles
   end
 
@@ -27,14 +27,14 @@ class Map
     end
   end
 
-private 
+private
 
-  def populate_char_map
+  def populate_world_map
     text = File.open("./assets/small_farm.dat").read
 
     line_counter = 0
     char_counter = 0
-    
+
     text.each_line do |line|
       @char_map.push []
 

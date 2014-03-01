@@ -15,7 +15,7 @@ class MapTile
   end
 
   def draw
-    if @type == :dirt
+    if @type.has_image?
       @image.draw_rot(@x + 25, @y + 25, 1, 0.0)
     else
       @window.draw_quad(@x, @y, @type.hex_color,
